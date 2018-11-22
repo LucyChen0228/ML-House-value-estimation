@@ -8,7 +8,7 @@ from sklearn.externals import joblib
 '''from sklearn.externals import joblib'''
 
 # Load the data set
-df = pd.read_csv("ml_house_data_set.csv")
+df = pd.read_csv("house_data_set.csv")
 
 # Remove the fields from the data set that we don't want to include in our model
 del df['house_number']
@@ -75,11 +75,10 @@ min_samples_leaf: 叶节点所需的最小样本数，默认为1'''
 joblib.dump(model, 'trained_house_model.pkl')
 
 gs_cv= GridSearchCV(model, param_grid, n_jobs=4)
-'''为什么n_jobs=4 ?'''
 '''gridsearch CV 自动调参数，n_jobs:并行数，int：个数,-1：跟CPU核数一致, 1:默认值'''
 
 gs_cv.fit(X_train,y_train)
-'''两者的顺序是否对最后的结果有影响?'''
+
 
 
 print(gs_cv.best_params_)
